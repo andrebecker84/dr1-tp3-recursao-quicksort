@@ -235,7 +235,7 @@ python ex12_quicksort_x_quickselect.py
 ### Menu de demonstração
 
 O `demo.py` reúne tudo num menu: cada opção mostra o comando, roda o exercício com um progresso em
-braile e exibe a saída.
+braile e exibe a saída uma seção por tela (Enter passa para a próxima), sem precisar rolar o terminal.
 
 ```bash
 cd src

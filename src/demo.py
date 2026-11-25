@@ -1,5 +1,6 @@
 """Menu de demonstração: escolhe um exercício, mostra o comando, roda com progresso em
-braile, exibe a saída real e volta ao menu.
+braile, exibe a saída real uma seção por vez (Enter passa para a próxima) e volta ao menu.
+Cada seção cabe numa tela, então não é preciso rolar o terminal.
 
     cd src && python3 demo.py        (no Windows: cd src; python demo.py)
 
@@ -50,7 +51,8 @@ ANSI = re.compile(r"\033\[[0-9;]*m")
 
 
 def limpar_tela():
-    print("\033[2J\033[H", end="")
+    """Limpa a tela e também o histórico de rolagem: subir o terminal não mostra telas anteriores."""
+    print("\033[H\033[2J\033[3J", end="", flush=True)
 
 
 def cabecalho():
@@ -90,7 +92,7 @@ def para_executar(comando):
 
 
 def executar(comando):
-    """Mostra o comando, roda com progresso em braile e imprime a saída. Devolve (saída, segundos)."""
+    """Mostra o comando e roda com progresso em braile. Devolve (saída, segundos); quem imprime é o chamador."""
     print(cor("1;32", "$ ") + cor("1", comando))
     inicio = time.monotonic()
     processo = subprocess.Popen(para_executar(comando), shell=True, stdout=subprocess.PIPE,
@@ -103,9 +105,32 @@ def executar(comando):
         quadro += 1
         time.sleep(0.08)
     print("\r\033[K", end="")
-    saida = processo.stdout.read()
-    print(saida, end="" if saida.endswith("\n") else "\n")
-    return saida, time.monotonic() - inicio
+    return processo.stdout.read(), time.monotonic() - inicio
+
+
+def secoes(saida):
+    """Divide a saída nas seções que os exercícios imprimem (título sublinhado com ─). As Verificações
+    ficam junto da seção anterior, que é curta o bastante; uma saída sem títulos vira uma seção só."""
+    linhas = saida.rstrip("\n").split("\n")
+    limpas = [ANSI.sub("", linha) for linha in linhas]
+    inicios = [i for i in range(len(linhas) - 1) if re.fullmatch("─{4,}", limpas[i + 1])]
+    if len(inicios) < 2:
+        return ["\n".join(linhas)]
+    inicios[0] = 0
+    partes = []
+    for inicio, fim in zip(inicios, inicios[1:] + [len(linhas)]):
+        texto = "\n".join(linhas[inicio:fim]).rstrip("\n")
+        if partes and limpas[inicio].startswith("Verificações"):
+            partes[-1] += "\n\n" + texto
+        else:
+            partes.append(texto)
+    return partes
+
+
+def titulo_da_tela(nome, big_o, parte=None, total=None):
+    contador = f"  {cor('2', f'parte {parte} de {total}')}" if total and total > 1 else ""
+    print(cor("1;36", nome) + (f"  {cor('35', big_o)}" if big_o else "") + contador)
+    print(cor("2", "─" * 60) + "\n")
 
 
 def resumo(saidas, segundos):
@@ -121,15 +146,28 @@ def resumo(saidas, segundos):
 
 
 def demonstrar(opcao, titulo, big_o, comandos):
-    limpar_tela()
+    """Roda os comandos e mostra a saída. Um exercício com várias seções é mostrado uma seção por
+    tela: Enter passa para a próxima, e a tela é limpa antes, então nada precisa ser rolado."""
     nome = titulo if opcao in ("0", "t") else f"Exercício {opcao} · {titulo}"
-    print(cor("1;36", nome) + (f"  {cor('35', big_o)}" if big_o else ""))
-    print(cor("2", "─" * 60) + "\n")
+    limpar_tela()
+    titulo_da_tela(nome, big_o)
     saidas, total = [], 0.0
     for comando in comandos:
         saida, segundos = executar(comando)
         saidas.append(saida)
         total += segundos
+        partes = secoes(saida)
+        if len(partes) == 1:
+            print(saida, end="" if saida.endswith("\n") else "\n")
+            continue
+        for indice, parte in enumerate(partes, 1):
+            if indice > 1:
+                input(cor("2", f"\n⣿ Enter: parte {indice} de {len(partes)} "))
+            limpar_tela()
+            titulo_da_tela(nome, big_o, indice, len(partes))
+            if indice == 1:
+                print(cor("1;32", "$ ") + cor("1", comando))
+            print(parte)
     resumo(saidas, total)
 
 
