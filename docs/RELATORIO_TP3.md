@@ -658,6 +658,6 @@ que não será usada.
 Vídeo de 4 a 6 minutos com a explicação de quatro exercícios e a execução no terminal, no Google
 Drive institucional, com permissão de visualização para qualquer pessoa com o link.
 
-<!-- video: -->
-**Link do vídeo:** a inserir.
+<!-- video: https://drive.google.com/file/d/1VNHyDmpfNLSiB2b_dhdRqPqfP660OhE2/view?usp=sharing -->
+**Link do vídeo:** [assistir no Google Drive](https://drive.google.com/file/d/1VNHyDmpfNLSiB2b_dhdRqPqfP660OhE2/view?usp=sharing)
 <!-- /video -->

@@ -13,6 +13,7 @@
 [![Notebook](https://img.shields.io/badge/Notebook-an%C3%A1lise%20completa-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](andre_becker_DR1_TP3.ipynb)
 [![nbviewer](https://img.shields.io/badge/nbviewer-vers%C3%A3o%20renderizada-1E3A8A?style=for-the-badge&logo=jupyter&logoColor=white)](https://nbviewer.org/github/andrebecker84/dr1-tp3-recursao-quicksort/blob/main/andre_becker_DR1_TP3.ipynb)
 [![Relatório](https://img.shields.io/badge/Relat%C3%B3rio-12%20exerc%C3%ADcios%20%C2%B7%2013%20telas-2A78D6?style=for-the-badge&logo=markdown&logoColor=white)](docs/RELATORIO_TP3.md)
+[![Vídeo](https://img.shields.io/badge/V%C3%ADdeo-defesa%20do%20trabalho-EA4335?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1VNHyDmpfNLSiB2b_dhdRqPqfP660OhE2/view?usp=sharing)
 
 <br/>
 
@@ -285,7 +286,7 @@ python -m unittest discover -s tests -t . -v
 | Aplica programação dinâmica para reduzir custo | Ex. 8: memoização, 1.587.347 → 2.199 chamadas e 100 pesos resolvidos |
 | Implementa e instrumenta QuickSort e QuickSelect | Ex. 9 a 11: comparações, cópias (troca = 3), chamadas e profundidade |
 | Relaciona estrutura recursiva e complexidade em Big O | Tabela de recorrências do Ex. 7, O(log y) no Ex. 3 e O(N log N) x O(N) no Ex. 12 |
-| Explica decisões técnicas no vídeo | Vídeo de 4 a 6 minutos com quatro exercícios; link no fim do PDF de entrega |
+| Explica decisões técnicas no vídeo | [Vídeo](https://drive.google.com/file/d/1VNHyDmpfNLSiB2b_dhdRqPqfP660OhE2/view?usp=sharing) de 4 a 6 minutos com quatro exercícios; link também no fim do PDF de entrega |
 | Organiza e documenta código e evidências | Notebook com sumário e o mesmo roteiro por exercício, 13 telas, saídas em texto em `evidencias/saidas/` e 36 testes |
 
 <p align="right"><a href="#indice">⬆ voltar ao índice</a></p>
@@ -329,6 +330,8 @@ DR1_TP3/
 Os 12 exercícios estão implementados, executados e documentados, e os 36 testes passam. O documento
 de entrega (`andre_becker_DR1_TP3.pdf`, com as telas e o link do vídeo no fim) vai pela plataforma do
 Infnet e não é versionado aqui.
+
+🎥 **Vídeo de defesa:** [assistir no Google Drive](https://drive.google.com/file/d/1VNHyDmpfNLSiB2b_dhdRqPqfP660OhE2/view?usp=sharing)
 
 <p align="right"><a href="#indice">⬆ voltar ao índice</a></p>
 
