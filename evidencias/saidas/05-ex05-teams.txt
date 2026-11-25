@@ -1,0 +1,41 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex05_teams.py
+Exercício 5: teams('ABCDE', 3), cada candidato entra ou fica de fora
+────────────────────────────────────────────────────────────────────
+decisão sobre o 'A'  subproblema             times
+───────────────────  ──────────────────────  ───────────────────────
+A entra              'A' + teams('BCDE', 2)  ABC ABD ABE ACD ACE ADE
+A fica de fora       teams('BCDE', 3)        BCD BCE BDE CDE
+10 times = C(5, 3) = 10, em 39 chamadas
+
+teams('ABCDE', k) para todos os k
+─────────────────────────────────
+k  times  C(5, k)  chamadas  times gerados
+─  ─────  ───────  ────────  ───────────────────────────────────────
+0      1        1         1  ''
+1      5        5        11  A B C D E
+2     10       10        29  AB AC AD AE BC BD BE CD CE DE
+3     10       10        39  ABC ABD ABE ACD ACE ADE BCD BCE BDE CDE
+4      5        5        29  ABCD ABCE ABDE ACDE BCDE
+5      1        1        11  ABCDE
+6      0        0         1
+k = 0: um único time vazio (''); k maior que o número de candidatos: nenhum time
+
+Candidatos 'ABCDEFGHIJKLMNOP' (n = 16): quantidade de times e de chamadas
+─────────────────────────────────────────────────────────────────────────
+ k   times  C(16, k)  chamadas
+──  ──────  ────────  ────────
+ 1      16        16        33
+ 2     120       120       271
+ 4   1.820     1.820     4.759
+ 8  12.870    12.870    48.619
+12   1.820     1.820    12.375
+16       1         1        33
+
+Verificações
+────────────
+[OK] mesmos times, na mesma ordem, do itertools.combinations em 77 casos (n de 0 a 10)
+[OK] 12.870 times de 8 entre 16, nenhum repetido
+[OK] candidato repetido conta uma vez: teams('ABCA', 2) = AB AC BC
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  0s
+❯

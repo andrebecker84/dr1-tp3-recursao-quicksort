@@ -1,0 +1,34 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex06_knapsack.py
+Exercício 6: knapsack(target, weights, 0), combinações que somam exatamente o alvo
+──────────────────────────────────────────────────────────────────────────────────
+alvo                   pesos  soluções  chamadas  combinações
+────  ──────────────────────  ────────  ────────  ───────────────────────────────────────────
+  20            [11 8 7 6 5]         1        51  [8 7 5]
+  10             [2 3 5 7 8]         3        47  [2 3 5] [2 8] [3 7]
+  12           [1 2 3 4 5 6]         5       117  [1 2 3 6] [1 2 4 5] [1 5 6] [2 4 6] [3 4 5]
+  10                [5 5 10]         2        13  [5 5] [10]
+   7                 [2 4 6]         0        15  nenhuma
+   0                   [3 4]         1         1  []
+ 100  [1 2 3 4 5 6 7 8 9 10]         0     2.047  nenhuma
+alvo 0 já é uma solução: a mochila vazia ([]); alvo ímpar com pesos pares ou acima da soma: nenhuma
+
+Explosão combinatória: pesos 1, 2, ..., n
+─────────────────────────────────────────
+ n  chamadas (alvo inatingível)  2^(n+1) − 1  alvo = soma/2   chamadas  soluções
+──  ───────────────────────────  ───────────  ─────────────  ─────────  ────────
+ 4                           31           31              5         27         2
+ 8                          511          511             18        427        14
+12                        8.191        8.191             39      6.575       124
+16                      131.071      131.071             68    101.843     1.314
+20                    2.097.151    2.097.151            105  1.587.347    15.272
+[OK] sem nenhum corte, cada peso dobra a árvore: 2^(n+1) − 1 chamadas, O(2^n)
+cada peso a mais multiplica as chamadas por 2: com n = 40 seriam 2,2 trilhões
+
+Verificações
+────────────
+[OK] as mesmas soluções da enumeração das 2^n máscaras de bits em 200 conjuntos aleatórios
+[OK] toda combinação devolvida soma exatamente o alvo
+[OK] peso zero ou negativo é recusado: o corte em alvo < 0 só é seguro com pesos positivos
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  1s
+❯

@@ -1,0 +1,31 @@
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editores e sistema (Windows, OneDrive, macOS)
+.vscode/
+.idea/
+.claude/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Entrega da disciplina: o .docx e o PDF vão pela plataforma do Infnet, não pelo repositório
+~$*
+andre_becker_DR1_TP3.docx
+andre_becker_DR1_TP3.pdf
+
+# Ferramentas e rascunhos locais: captura das telas, geração do notebook e do documento de entrega,
+# o modelo do documento e o roteiro da gravação do vídeo
+scripts/
+docs/molde/
+docs/ROTEIRO_VIDEO.md
+
+# Material das aulas é do professor e não vai para um repositório público
+slides_aulas/

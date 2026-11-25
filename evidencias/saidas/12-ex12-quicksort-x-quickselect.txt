@@ -1,0 +1,31 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex12_quicksort_x_quickselect.py
+Exercício 12: a mediana de listas aleatórias, ordenando tudo ou só selecionando (média de 10 listas)
+────────────────────────────────────────────────────────────────────────────────────────────────────
+      N  comparações QuickSort  comparações QuickSelect  razão  cópias QuickSort  cópias QuickSelect  razão
+───────  ─────────────────────  ───────────────────────  ─────  ────────────────  ──────────────────  ─────
+  1.001                 11.689                    3.232   ×3,6             6.625               1.701   ×3,9
+ 10.001                164.335                   36.601   ×4,5            89.238              17.401   ×5,1
+100.001              2.053.012                  296.281   ×6,9         1.127.642             159.271   ×7,1
+[OK] nas 30 listas, o QuickSelect devolve o elemento central da lista ordenada pelo QuickSort
+a razão cresce com N, como N log N ÷ N = log N: com N = 100.001, até 6 seleções avulsas custam menos que uma ordenação
+
+Entrada ordenada (N = 2.001): o pivô no fim prejudica os dois
+─────────────────────────────────────────────────────────────
+algoritmo    comparações  profundidade         referência
+───────────  ───────────  ────────────  ─────────────────
+QuickSort      2.002.999         2.001   N²/2 = 2.002.000
+QuickSelect    1.502.501         1.001  3N²/8 = 1.501.500
+[OK] mesmo resultado; o QuickSelect só para quando o pivô chega ao meio, depois de N/2 partições
+
+Qual usar
+─────────
+objetivo                             algoritmo             por quê
+───────────────────────────────────  ────────────────────  ─────────────────────────────────────────────────
+mediana, k-ésimo menor, percentil    QuickSelect           O(N) médio: só o lado que contém k
+os k menores, sem ordem entre eles   QuickSelect           depois de achar o índice k, eles estão à esquerda
+saída ordenada ou listagem em ordem  QuickSort             a seleção não ordena os lados
+muitas consultas de posição          QuickSort             ordena uma vez e cada consulta custa O(1)
+entrada já (quase) ordenada          nenhum com este pivô  os dois caem em O(N²); trocar o pivô
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  5s
+❯

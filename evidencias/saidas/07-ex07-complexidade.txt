@@ -1,0 +1,41 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex07_complexidade.py
+Exercício 7: estados repetidos em knapsack(6, [1, 2, 3, 4])
+───────────────────────────────────────────────────────────
+estado (alvo, índice)  visitas  subproblema
+─────────────────────  ───────  ────────────────────────
+(3, 3)                       2  falta 3 com os pesos [4]
+(-1, 4)                      2  alvo já ultrapassado
+(3, 4)                       2  falta 3 com os pesos []
+(2, 4)                       2  falta 2 com os pesos []
+(1, 4)                       2  falta 1 com os pesos []
+29 chamadas para 24 estados distintos. O estado (3, 3) chega por dois caminhos: pegar 1 e 2, ou pegar só o 3
+
+Em escala: pesos 1, 2, ..., n e alvo = soma/2
+─────────────────────────────────────────────
+ n   chamadas  estados distintos  redundantes  % redundante  estado mais repetido
+──  ─────────  ─────────────────  ───────────  ────────────  ────────────────────
+ 8        427                114          313         73,3%           (3, 8) × 13
+12      6.575                325        6.250         95,1%         (1, 12) × 123
+16    101.843                707      101.136         99,3%       (1, 16) × 1.313
+20  1.587.347              1.310    1.586.037         99,9%      (1, 20) × 15.260
+a cada 4 pesos, as chamadas crescem ≈ ×16 (2^4) e os estados distintos menos de ×3: o resto é trabalho repetido
+
+Crescimento das chamadas ao dobrar a entrada, nas funções dos Exercícios 1 a 6
+──────────────────────────────────────────────────────────────────────────────
+função         entrada dobrada   chamadas   chamadas     fator  recorrência              Big O (chamadas)
+─────────────  ────────────────  ────────  ─────────  ────────  ───────────────────────  ────────────────
+mult(5, y)     y = 250 → 500          251        501      ×2,0  T(y) = T(y−1) + 1        O(y)
+power(2, y)    y = 500 → 1000           9         10      ×1,1  T(y) = T(y/2) + 1        O(log y)
+factor(2^k)    k = 10 → 20             10         20      ×2,0  1 por fator              O(log x)
+percorrer      pastas = 10 → 20        11         21      ×1,9  1 por diretório          O(D)
+teams(n, n/2)  n = 8 → 16             251     48.619    ×193,7  T(n−1, k−1) + T(n−1, k)  O(2^n)
+knapsack       n = 10 → 20          2.047  2.097.151  ×1.024,5  T(n) = 2T(n−1) + 1       O(2^n)
+
+Verificações
+────────────
+[OK] estados distintos (1.310) limitados por (n + 1)·(2·alvo + 1): crescem como n · alvo
+[OK] as recursões lineares dobram junto com a entrada
+[OK] o knapsack sem solução vai de 2^11 − 1 para 2^21 − 1 chamadas: ×1.024 ao dobrar n
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  2s
+❯

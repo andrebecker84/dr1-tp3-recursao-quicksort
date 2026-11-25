@@ -1,0 +1,32 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex08_memoizacao.py
+Exercício 8: knapsack puro x knapsack_memo, pesos 1, 2, ..., n e alvo = soma/2
+──────────────────────────────────────────────────────────────────────────────
+ n  alvo  soluções  chamadas (pura)  chamadas (memo)  redução  tempo (pura)  tempo (memo)
+──  ────  ────────  ───────────────  ───────────────  ───────  ────────────  ────────────
+ 8    18        14              427              155     ×2,8       0,000 s       0,000 s
+12    39       124            6.575              493    ×13,3       0,002 s       0,001 s
+16    68     1.314          101.843            1.141    ×89,3       0,030 s       0,002 s
+20   105    15.272        1.587.347            2.199   ×721,8       0,446 s       0,020 s
+[OK] as duas versões devolvem exatamente as mesmas combinações em todos os tamanhos
+
+Só contando as soluções (contar_combinacoes, com memo): a recursão pura seria inviável
+──────────────────────────────────────────────────────────────────────────────────────
+  n   alvo                               soluções  chamadas (memo)  estados guardados  estados possíveis n·(alvo+1)  pura, pior caso
+───  ─────  ─────────────────────────────────────  ───────────────  ─────────────────  ────────────────────────────  ───────────────
+  8     18                                     14              155                 77                           152            ≈ 2^9
+ 12     39                                    124              493                246                           480           ≈ 2^13
+ 16     68                                  1.314            1.141                570                         1.104           ≈ 2^17
+ 20    105                                 15.272            2.199              1.099                         2.120           ≈ 2^21
+ 40    410                          5.830.034.720           17.199              8.599                        16.440           ≈ 2^41
+ 60    915                  3.360.682.669.655.028           57.685             28.842                        54.960           ≈ 2^61
+100  2.525  1.731.024.005.948.725.016.633.786.324          265.873            132.936                       252.600          ≈ 2^101
+com n = 100 a recursão pura faria até 2,5 · 10^30 chamadas; a memoizada fez menos de 300 mil
+
+Verificações
+────────────
+[OK] memo e pura iguais em 150 conjuntos aleatórios (com pesos repetidos)
+[OK] a contagem confere com a listagem
+[OK] chamadas da versão memo ≤ 2·n·(alvo + 1) + 1: cada estado é resolvido uma vez e chama no máximo 2
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  0s
+❯

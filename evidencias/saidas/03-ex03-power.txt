@@ -1,0 +1,41 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex03_power.py
+Exercício 3: power(x, y) com expoentes positivos, negativos e zero
+──────────────────────────────────────────────────────────────────
+  x   y  caso                       power(x, y)   x ** y do Python
+───  ──  ───────────────────  ─────────────────  ─────────────────
+  2  10  positivo                          1024               1024
+  3   5  positivo                           243                243
+  5   0  base y = 0                           1                  1
+  7   1  base y = 1                           7                  7
+  2  -3  negativo: 1 / x^|y|              0.125              0.125
+ -2  -3  negativo: 1 / x^|y|             -0.125             -0.125
+ 10  -2  negativo: 1 / x^|y|               0.01               0.01
+ -3   3  positivo                           -27                -27
+1.5   2  positivo                          2.25               2.25
+  0   0  base y = 0                           1                  1
+  0   5  positivo                             0                  0
+  0  -1  negativo: 1 / x^|y|  ZeroDivisionError  ZeroDivisionError
+0 ** -1 não existe (seria 1 / 0): power levanta ZeroDivisionError, como o próprio Python
+
+Multiplicações: quadrados sucessivos O(log y) x versão linear O(y), para x = 2
+──────────────────────────────────────────────────────────────────────────────
+        y  chamadas  multiplicações  limite 2·⌊log₂ y⌋   linear (y − 1)
+─────────  ────────  ──────────────  ─────────────────  ───────────────
+        1         1               0                  0                0
+        2         2               1                  2                1
+       10         4               4                  6                9
+      100         7               8                 12               99
+    1.000        10              14                 18              999
+    5.000        13              16                 24            4.999
+  100.000        17              21                 32  estoura a pilha
+1.000.000        20              25                 38  estoura a pilha
+dobrar y acrescenta uma chamada à versão rápida e dobra o trabalho da linear
+
+Verificações
+────────────
+[OK] power(x, y) igual a x ** y nos 465 pares com -12 <= y <= 40 (bases inteiras, negativas e reais)
+[OK] no máximo 2·⌊log₂ y⌋ multiplicações para todo y de 1 a 5.000
+[OK] casos base: x^0 = 1 e x^1 = x; expoente negativo vira 1 / x^|y| (2^-3 = 0,125)
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  0s
+❯

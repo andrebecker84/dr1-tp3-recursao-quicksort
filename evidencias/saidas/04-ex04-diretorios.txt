@@ -1,0 +1,52 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex04_diretorios.py
+Exercício 4: percorrer('projeto/'), um nível por chamada, a indentação é a profundidade
+───────────────────────────────────────────────────────────────────────────────────────
+0  projeto/
+1  ├── .gitignore
+1  ├── README.md
+1  ├── dados/
+2  │   ├── entradas.csv
+2  │   └── brutos/
+3  │       ├── 2025/
+4  │       │   ├── fev.csv
+4  │       │   └── jan.csv
+3  │       └── 2026/
+4  │           └── jan.csv
+1  ├── docs/
+2  │   ├── relatorio.md
+2  │   └── imagens/
+3  │       ├── grafico.png
+3  │       └── tela.png
+1  ├── src/
+2  │   ├── main.py
+2  │   └── util/
+3  │       ├── __init__.py
+3  │       └── texto.py
+1  └── vazio/
+10 chamadas: 1 para a raiz e 1 para cada um dos 9 subdiretórios · profundidade máxima 4
+
+Arquivos encontrados em cada nível
+──────────────────────────────────
+nível  arquivos  nomes
+─────  ────────  ────────────────────────────────────────────
+    1  2         .gitignore, README.md
+    2  3         entradas.csv, relatorio.md, main.py
+    3  4         grafico.png, tela.png, __init__.py, texto.py
+    4  3         fev.csv, jan.csv, jan.csv
+
+A mesma função sobre uma pasta real: o src/ deste trabalho
+──────────────────────────────────────────────────────────
+nível  arquivos
+─────  ────────
+    1        16
+    2        13
+29 arquivos em 4 diretórios (src/ e 3 subdiretórios)
+
+Verificações (o os.walk só confere, não faz a travessia)
+────────────────────────────────────────────────────────
+[OK] 12 arquivos e 9 diretórios, os mesmos números do os.walk
+[OK] vazio/ aparece, e a chamada sobre ele não acha nada e retorna: o caso base da descida
+[OK] na pasta real, o mesmo total de arquivos do os.walk
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  0s
+❯

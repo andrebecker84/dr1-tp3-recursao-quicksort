@@ -1,0 +1,36 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex02_factor.py
+Exercício 2: factor(360), cada divisor encontrado é uma chamada nova a partir dele
+──────────────────────────────────────────────────────────────────────────────────
+→ factor(360, 2): 2 divide, segue com 180
+│ → factor(180, 2): 2 divide, segue com 90
+│ │ → factor(90, 2): 2 divide, segue com 45
+│ │ │ → factor(45, 2): 3 divide, segue com 15
+│ │ │ │ → factor(15, 3): 3 divide, segue com 5
+│ │ │ │ │ ■ factor(5, 3): nenhum divisor até √5 ≈ 2, 5 é primo
+resultado: [2 2 2 3 3 5] · a busca recomeça do último divisor (lowest), nunca do 2
+
+Entradas diferentes: especiais, primos, potências e compostos grandes
+─────────────────────────────────────────────────────────────────────
+              x              factor(x)  chamadas  tentativas (lowest..√x)  tentativas (2..x)
+───────────────  ─────────────────────  ────────  ───────────────────────  ─────────────────
+              0                    [0]         1                        0                  0
+              1                     []         1                        0                  0
+             -1                   [-1]         2                        0                  0
+              2                    [2]         1                        0                  1
+             12                [2 2 3]         3                        2                  4
+            -12             [-1 2 2 3]         4                        2                  4
+             97                   [97]         1                        8                 96
+            360          [2 2 2 3 3 5]         6                        6                 11
+          1.024  [2 2 2 2 2 2 2 2 2 2]        10                        9                 10
+      1.000.003              [1000003]         1                      999          1.000.002
+600.851.475.143     [71 839 1471 6857]         4                    1.472              9.234
+0 não tem fatoração ([0]); 1 é o produto vazio ([]); negativo ganha o fator -1
+
+Verificações
+────────────
+[OK] produto = x, fatores primos e em ordem crescente para os 21.001 inteiros de -1.000 a 20.000
+[OK] primo 1.000.003: 999 tentativas (2 a 1.000), contra 1.000.002 sem o limite da raiz
+[OK] lowest < 2 é recusado: 1 divide qualquer número e a recursão nunca terminaria
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  0s
+❯

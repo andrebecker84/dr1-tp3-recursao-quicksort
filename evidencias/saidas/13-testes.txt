@@ -1,0 +1,16 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ ls algoritmos tests
+algoritmos:
+ __init__.py   aritmetica.py   combinacoes.py   diretorios.py   fatoracao.py   metricas.py   mochila.py   ordenacao.py
+
+tests:
+ __init__.py   test_ordenacao.py   test_recursao.py
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 -m unittest discover -s tests -t .
+....................................
+----------------------------------------------------------------------
+Ran 36 tests in 0.912s
+
+OK
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  1s
+❯

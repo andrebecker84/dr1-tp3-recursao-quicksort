@@ -1,0 +1,40 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex10_instrumentacao.py
+Exercício 10: contadores a cada partição de [0 5 2 1 6 3]
+─────────────────────────────────────────────────────────
+trecho  pivô  comparações  trocas  cópias  trecho depois da partição
+──────  ────  ───────────  ──────  ──────  ─────────────────────────
+[0..5]     3            7       2       6  [0 1 2 3 6 5]
+[0..2]     2            3       0       0  [0 1 2]
+[0..1]     1            1       0       0  [0 1]
+[4..5]     5            1       1       3  [5 6]
+total: 12 comparações e 9 cópias · a troca do pivô consigo mesmo não move nada e não conta
+
+Comparações e cópias por tipo de entrada
+────────────────────────────────────────
+    N  entrada           comparações  cópias  comp ÷ N·log₂N  comp ÷ N²/2
+─────  ────────────────  ───────────  ──────  ──────────────  ───────────
+  100  ordenada                5.048       0            7,60        1,010
+  100  invertida               4.999     150            7,52        1,000
+  100  aleatória                 757     414            1,14        0,151
+  100  quase ordenada          4.821      15            7,26        0,964
+  100  muitos repetidos          647     597            0,97        0,129
+1.000  ordenada              500.498       0           50,22        1,001
+1.000  invertida             499.999   1.500           50,17        1,000
+1.000  aleatória              10.757   6.741            1,08        0,022
+1.000  quase ordenada        482.414     132           48,41        0,965
+1.000  muitos repetidos        9.458  10.647            0,95        0,019
+2.000  ordenada            2.000.998       0           91,24        1,000
+2.000  invertida           1.999.999   3.000           91,19        1,000
+2.000  aleatória              26.243  14.703            1,20        0,013
+2.000  quase ordenada      1.916.888     270           87,40        0,958
+2.000  muitos repetidos       22.137  23.982            1,01        0,011
+aleatória e muitos repetidos: ≈ 1·N·log₂N, O(N log N) · ordenada, invertida e quase ordenada: ≈ N²/2, O(N²)
+
+Verificações
+────────────
+[OK] toda cópia vem de uma troca: as cópias são múltiplas de 3
+[OK] ordenada: exatamente N(N+1)/2 − 2 comparações e nenhuma cópia (o pivô já está no lugar)
+[OK] invertida: só 3·⌊N/2⌋ cópias, mas o mesmo número quadrático de comparações
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  0s
+❯

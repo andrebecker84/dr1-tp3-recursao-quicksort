@@ -1,0 +1,36 @@
+becker@alienwarePC  ~/DR1_TP3  v3.15.2
+❯ python3 ex09_quicksort.py
+Exercício 9: quicksort([0 5 2 1 6 3]), cada linha é uma partição; o recuo é o nível
+───────────────────────────────────────────────────────────────────────────────────
+[0..5] pivô 3: [0 1 2] 3 [6 5]
+│ [0..2] pivô 2: [0 1] 2 []
+│ │ [0..1] pivô 1: [0] 1 []
+│ [4..5] pivô 5: [] 5 [6]
+resultado: [0 1 2 3 5 6] · trechos com 0 ou 1 elemento são o caso base e não aparecem
+
+Ordenados, invertidos e aleatórios
+──────────────────────────────────
+    N  entrada    comparações  chamadas  profundidade
+─────  ─────────  ───────────  ────────  ────────────
+   10  ordenada            53        19            10
+   10  invertida           49        19            10
+   10  aleatória           31        13             7
+  100  ordenada         5.048       199           100
+  100  invertida        4.999       199           100
+  100  aleatória          757       137            15
+1.000  ordenada       500.498     1.999         1.000
+1.000  invertida      499.999     1.999         1.000
+1.000  aleatória       10.757     1.319            21
+2.000  ordenada     2.000.998     3.999         2.000
+2.000  invertida    1.999.999     3.999         2.000
+2.000  aleatória       26.243     2.677            24
+[OK] as 12 saídas estão em ordem e têm os mesmos elementos da entrada
+ordenada e invertida: o pivô (último) é sempre o maior ou o menor, um lado fica vazio e a pilha chega a N
+
+Verificações
+────────────
+[OK] igual ao sorted() em 2.000 listas aleatórias com repetidos (tamanhos 0 a 60)
+[OK] a lista de entrada não é alterada: a ordenação acontece numa cópia
+[OK] lista vazia, unitária e com todos os valores iguais
+becker@alienwarePC  ~/DR1_TP3  v3.15.2  0s
+❯
